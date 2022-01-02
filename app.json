@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Arriba",
+    "slug": "Arriba",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "Arriba"
+}
