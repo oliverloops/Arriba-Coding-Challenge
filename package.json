@@ -9,16 +9,36 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^4",
+    "@rainbow-me/animated-charts": "^1.0.0-alpha.6",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
     "expo": "~44.0.2",
+    "expo-linear-gradient": "~11.0.0",
     "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+    "react-native-gesture-handler": "~2.1.0",
+    "react-native-reanimated": "^2.3.1",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-screens": "~3.10.1",
+    "react-native-svg": "^12.1.1",
     "react-native-web": "0.17.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "@babel/highlight": "^7.16.7",
+    "@types/jest": "^27.4.0",
+    "@types/react": "^17.0.38",
+    "@types/react-native": "^0.66.11",
+    "@types/react-test-renderer": "^17.0.1",
+    "typescript": "^4.5.4"
+  },
+  "resolutions": {
+    "react-native-gesture-handler": "~2.1.0",
+    "react-native-svg": "^12.1.1"
   },
   "private": true
 }
