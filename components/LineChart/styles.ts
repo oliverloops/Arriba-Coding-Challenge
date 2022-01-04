@@ -26,17 +26,20 @@ const main = StyleSheet.create({
   price: {
     fontSize: 32,
     fontWeight: "600",
+    fontFamily: "Manrope",
     lineHeight: 43.71,
   },
   conversion: {
     fontSize: 14,
-    fontWeight: "600",
+    fontWeight: "500",
+    fontFamily: "Manrope",
   },
   percent: {
     flexDirection: "row",
     alignItems: "center",
     fontSize: 14,
     fontWeight: "600",
+    fontFamily: "Manrope",
   },
   buttons: {
     flexDirection: "row",

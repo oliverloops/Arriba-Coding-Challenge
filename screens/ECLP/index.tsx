@@ -1,10 +1,16 @@
-import React from "react";
-import { View, Text, Image, Pressable, Dimensions } from "react-native";
+import React, { useReducer } from "react";
+import { View, Text, Image, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 //styles
 import { layout, box, button } from "./styles";
 
-const ECLP = () => {
+//reducers
+import { balanceReducer } from "../../reducers/balaceReducer";
+
+//UI components
+import BalanceButton from "./Button";
+
+const ECLP: React.FC = () => {
   return (
     <View style={layout.main}>
       <Content />
@@ -12,22 +18,31 @@ const ECLP = () => {
   );
 };
 
-const Content = () => {
-  const windowHeight = Dimensions.get("window").height;
-  const verticalTranslate = windowHeight / 2.35;
+const Content: React.FC = () => {
+  //this data can be retrieved from the API
+  const accountStatus = { balance: 77.504 };
+
+  //balance state handler
+  const [balance, dispatch] = useReducer(balanceReducer, accountStatus.balance);
+  const depositHandler = () => dispatch({ type: "deposit" });
+  const withdrawHandler = () => dispatch({ type: "withdraw" });
+
+  //data for vertical aligment
+  const windowHeight: number = Dimensions.get("window").height;
+  const verticalTranslate: number = windowHeight / 2.35;
 
   return (
     <>
       <LinearGradient
         start={{ x: 0.1, y: 0.2 }}
-        colors={["rgba(46, 202, 136, 0.6)", "rgba(46, 202, 136, 1)"]}
+        colors={["rgba(22, 250, 155, 0.6)", "rgba(46, 202, 136, 1)"]}
         style={layout.aboveBlock}
       >
         <Image source={require("../../static/wallet_lg.png")} />
         <View style={layout.label}>
           <Text style={layout.labelText}>Total eCLP Balance</Text>
         </View>
-        <Text style={layout.balance}>$77.504</Text>
+        <Text style={layout.balance}>${balance.toFixed(3)}</Text>
       </LinearGradient>
       <View
         style={[box.main, { transform: [{ translateY: verticalTranslate }] }]}
@@ -43,19 +58,16 @@ const Content = () => {
       </View>
       <View style={layout.underBlock}>
         <View style={button.layout}>
-          <Pressable style={[button.container, { backgroundColor: "#fff" }]}>
-            <Text style={[button.text, { color: "rgba(46, 202, 136, 1)" }]}>
-              Depositar
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[
-              button.container,
-              { backgroundColor: "rgba(46, 202, 136, 1)" },
-            ]}
-          >
-            <Text style={[button.text, { color: "#fff" }]}>Retirar</Text>
-          </Pressable>
+          <BalanceButton
+            title={"Depositar"}
+            color={"rgba(46, 202, 136, 1)"}
+            handleStateChange={depositHandler}
+          />
+          <BalanceButton
+            title={"Retirar"}
+            color={"#fff"}
+            handleStateChange={withdrawHandler}
+          />
         </View>
       </View>
     </>

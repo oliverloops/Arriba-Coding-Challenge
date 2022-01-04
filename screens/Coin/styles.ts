@@ -39,10 +39,12 @@ const bottomSheet = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "600",
+    fontFamily: "Manrope",
     paddingLeft: 18,
   },
   subtitle: {
     fontWeight: "600",
+    fontFamily: "Manrope",
     fontSize: 16,
     lineHeight: 22.4,
     paddingLeft: 18,
@@ -50,6 +52,7 @@ const bottomSheet = StyleSheet.create({
   description: {
     fontSize: 13,
     fontWeight: "400",
+    fontFamily: "Manrope",
     paddingTop: 10,
     lineHeight: 20,
     paddingLeft: 18,
@@ -95,12 +98,14 @@ const boxContainer = StyleSheet.create({
   title: {
     fontSize: 15,
     fontWeight: "700",
+    fontFamily: "Manrope",
     lineHeight: 21,
     color: "rgba(17, 17, 17, 1)",
     paddingRight: 50,
   },
   description: {
     fontWeight: "600",
+    fontFamily: "Manrope",
     fontSize: 12,
     lineHeight: 21.6,
     color: "rgba(124, 141, 166, 1)",
@@ -149,6 +154,7 @@ const bottomSheetFooter = StyleSheet.create({
     color: "#fff",
     fontSize: 15,
     fontWeight: "700",
+    fontFamily: "Manrope",
   },
 });
 

@@ -20,19 +20,22 @@ const main = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: "600",
+    fontFamily: "Manrope",
     paddingBottom: 15,
     textAlign: "center",
     ...paddings,
   },
   description: {
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: "400",
+    fontFamily: "Manrope",
     textAlign: "center",
     ...paddings,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "700",
+    fontFamily: "Manrope",
   },
   joinButton: {
     flexDirection: "row",

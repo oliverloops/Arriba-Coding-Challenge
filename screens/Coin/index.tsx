@@ -35,7 +35,7 @@ const Coin = () => {
   //Context data (ref handler)
   const bottomSheetData = {
     bottomSheetModalRef: bottomSheetModalRef,
-    handlePresentModalPress: handlePresentModalPress,
+    handlePresentModalPress: () => handlePresentModalPress,
   };
 
   return (
@@ -158,10 +158,23 @@ const Footer = () => {
   return (
     <View style={bottomSheetFooter.body}>
       <View>
-        <Text style={{ color: "rgba(165, 166, 181, 1)", fontWeight: "500" }}>
+        <Text
+          style={{
+            color: "rgba(165, 166, 181, 1)",
+            fontWeight: "500",
+            fontFamily: "Manrope",
+          }}
+        >
           Precio Ahora:
         </Text>
-        <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 5 }}>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: "600",
+            fontFamily: "Manrope",
+            marginTop: 5,
+          }}
+        >
           $ 714
         </Text>
       </View>

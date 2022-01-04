@@ -70,5 +70,6 @@ const Home = ({ navigation }) => (
 const styles = StyleSheet.create({
   main: {
     textAlign: "center",
+    fontFamily: "Manrope",
   },
 });

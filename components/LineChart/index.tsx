@@ -4,6 +4,8 @@ import {
   ChartDot,
   ChartPath,
   ChartPathProvider,
+  ChartYLabel,
+  ChartXLabel,
   monotoneCubicInterpolation,
 } from "@rainbow-me/animated-charts";
 //styles
@@ -15,6 +17,20 @@ import { CoinContext } from "../../screens/Coin";
 export const { width: SIZE } = Dimensions.get("window");
 
 export const data = [
+  { x: 1451865600, y: 0.95 },
+  { x: 1451952000, y: 0.95 },
+  { x: 1452038400, y: 0.96 },
+  { x: 1452124800, y: 0.95 },
+  { x: 1452211200, y: 0.99 },
+  { x: 1452297600, y: 0.99 },
+  { x: 1452384000, y: 0.99 },
+  { x: 1452470400, y: 1.05 },
+  { x: 1452556800, y: 1.23 },
+  { x: 1452643200, y: 1.13 },
+  { x: 1452729600, y: 1.16 },
+  { x: 1452816000, y: 1.22 },
+  { x: 1452902400, y: 1.22 },
+  { x: 1452988800, y: 1.31 },
   { x: 1453075200, y: 1.47 },
   { x: 1453161600, y: 1.37 },
   { x: 1453248000, y: 1.53 },
@@ -50,17 +66,29 @@ const Content = () => {
   };
 
   return (
-    <>
+    <ChartPathProvider data={{ points, smoothingStrategy: "bezier" }}>
       <View style={main.priceContent}>
         <View style={main.innerPriceContent}>
-          <Text style={main.price}>
-            $714 <Text style={main.conversion}>/ 1 USD Coin</Text>
-          </Text>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Text style={main.price}>$</Text>
+            <ChartXLabel
+              style={[main.price, { width: "40%", maxWidth: "40%" }]}
+            />
+            <Text style={main.conversion}>/ 1 USD Coin</Text>
+          </View>
           <View style={main.percent}>
             <Image source={require("../../static/up_arrow.png")} />
-            <Text style={{ color: "rgba(46, 202, 136, 1)", paddingLeft: 5 }}>
-              1.01% hoy
-            </Text>
+            <View style={{ flexDirection: "row", paddingLeft: 3 }}>
+              <ChartYLabel
+                style={[
+                  { color: "rgba(46, 202, 136, 1)" },
+                  { width: "40%", maxWidth: "40%" },
+                ]}
+              />
+              <Text style={{ color: "rgba(46, 202, 136, 1)", paddingLeft: 5 }}>
+                % hoy
+              </Text>
+            </View>
           </View>
         </View>
         <View style={main.buttons}>
@@ -73,22 +101,24 @@ const Content = () => {
         </View>
       </View>
       <Line />
-    </>
+    </ChartPathProvider>
   );
 };
 
 const Line = () => {
   return (
     <View style={main.chartContainer}>
-      <ChartPathProvider data={{ points, smoothingStrategy: "bezier" }}>
-        <ChartPath
-          height={SIZE / 4}
-          strokeWidth={2}
-          stroke="rgba(46, 202, 136, 1)"
-          width={SIZE}
-        />
-        <ChartDot style={{ backgroundColor: "rgba(46, 202, 136, 0.65)" }} />
-      </ChartPathProvider>
+      <ChartPath
+        height={SIZE / 4}
+        strokeWidth={2}
+        selectedStrokeWidth={2}
+        stroke="rgba(46, 202, 136, 1)"
+        width={SIZE}
+      />
+      <ChartDot
+        style={{ backgroundColor: "rgba(46, 202, 136, 0.65)" }}
+        size={12}
+      />
     </View>
   );
 };

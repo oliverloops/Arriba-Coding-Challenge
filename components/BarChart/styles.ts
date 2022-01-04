@@ -41,6 +41,7 @@ const main = StyleSheet.create({
   year: {
     fontSize: 12,
     fontWeight: "500",
+    fontFamily: "Manrope",
     lineHeight: 16.8,
     marginTop: 5,
   },
