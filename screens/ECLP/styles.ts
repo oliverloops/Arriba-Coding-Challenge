@@ -11,6 +11,7 @@ const layout = StyleSheet.create({
   },
   underBlock: {
     flex: 1,
+    justifyContent: "flex-end",
     backgroundColor: "#fff",
   },
   label: {
@@ -37,4 +38,60 @@ const layout = StyleSheet.create({
   },
 });
 
-export { layout };
+const box = StyleSheet.create({
+  main: {
+    flex: 1,
+    alignSelf: "center",
+    justifyContent: "center",
+    width: 327,
+    height: 155,
+    borderRadius: 10,
+    position: "absolute",
+    zIndex: 99,
+    backgroundColor: "rgba(243, 246, 251, 1)",
+  },
+  textContainer: {
+    flexDirection: "column",
+    padding: 20,
+  },
+  title: {
+    fontSize: 12,
+    fontWeight: "700",
+    color: "rgba(25, 34, 82, 1)",
+    lineHeight: 16.8,
+  },
+  subtitle: {
+    fontSize: 12,
+    fontWeight: "400",
+    color: "rgba(132, 143, 172, 1)",
+    lineHeight: 16.8,
+    marginTop: 7,
+  },
+});
+
+const button = StyleSheet.create({
+  layout: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: "12%",
+    marginLeft: "10%",
+    marginRight: "10%",
+  },
+  container: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 156,
+    height: 47,
+    borderWidth: 1.5,
+    borderColor: "rgba(46, 202, 136, 1)",
+    borderRadius: 25,
+  },
+  text: {
+    fontSize: 14,
+    fontWeight: "700",
+    lineHeight: 19.12,
+  },
+});
+
+export { layout, box, button };
