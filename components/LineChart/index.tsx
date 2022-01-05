@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 import {
   ChartDot,
@@ -65,29 +65,41 @@ const Content = () => {
     consumer.handlePresentModalPress();
   };
 
+  //Worklet for currency price format
+  function priceWorklet(label: any) {
+    "worklet";
+    if (Object.is(label, "")) {
+      return `$714`;
+    } else {
+      return `$${label.slice(0, 3)}`;
+    }
+  }
+
+  //Worklet for percent format
+  function percentWorklet(label: any) {
+    "worklet";
+    if (Object.is(label, "")) {
+      return `1.01% hoy`;
+    } else {
+      return `${label.slice(0, 4)}% hoy`;
+    }
+  }
+
   return (
     <ChartPathProvider data={{ points, smoothingStrategy: "bezier" }}>
       <View style={main.priceContent}>
         <View style={main.innerPriceContent}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Text style={main.price}>$</Text>
-            <ChartXLabel
-              style={[main.price, { width: "40%", maxWidth: "40%" }]}
-            />
-            <Text style={main.conversion}>/ 1 USD Coin</Text>
+            <ChartXLabel format={priceWorklet} style={[main.price]} />
+            <Text style={main.conversion}> / 1 USD Coin</Text>
           </View>
           <View style={main.percent}>
             <Image source={require("../../static/up_arrow.png")} />
             <View style={{ flexDirection: "row", paddingLeft: 3 }}>
               <ChartYLabel
-                style={[
-                  { color: "rgba(46, 202, 136, 1)" },
-                  { width: "40%", maxWidth: "40%" },
-                ]}
+                format={percentWorklet}
+                style={[{ color: "rgba(46, 202, 136, 1)" }]}
               />
-              <Text style={{ color: "rgba(46, 202, 136, 1)", paddingLeft: 5 }}>
-                % hoy
-              </Text>
             </View>
           </View>
         </View>
@@ -106,19 +118,31 @@ const Content = () => {
 };
 
 const Line = () => {
+  const [chartVisible, setChartVisible] = useState(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setChartVisible(true);
+    }, 0);
+  }, [data]);
+
   return (
     <View style={main.chartContainer}>
-      <ChartPath
-        height={SIZE / 4}
-        strokeWidth={2}
-        selectedStrokeWidth={2}
-        stroke="rgba(46, 202, 136, 1)"
-        width={SIZE}
-      />
-      <ChartDot
-        style={{ backgroundColor: "rgba(46, 202, 136, 0.65)" }}
-        size={12}
-      />
+      {chartVisible ? (
+        <View style={main.chartContainer}>
+          <ChartPath
+            height={SIZE / 4}
+            strokeWidth={2}
+            selectedStrokeWidth={2}
+            stroke="rgba(46, 202, 136, 1)"
+            width={SIZE}
+          />
+          <ChartDot
+            style={{ backgroundColor: "rgba(46, 202, 136, 0.65)" }}
+            size={12}
+          />
+        </View>
+      ) : null}
     </View>
   );
 };
