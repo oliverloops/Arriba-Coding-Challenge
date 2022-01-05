@@ -1,10 +1,10 @@
 import React, { useCallback, useMemo, useRef } from "react";
 import { View, Text, Image, ScrollView, Pressable } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import BottomSheet, {
   BottomSheetView,
   BottomSheetModal,
 } from "@gorhom/bottom-sheet";
-import { LinearGradient } from "expo-linear-gradient";
 //Styling
 import { layout, bottomSheet, boxContainer, bottomSheetFooter } from "./styles";
 //UI components
@@ -35,7 +35,7 @@ const Coin = () => {
   //Context data (ref handler)
   const bottomSheetData = {
     bottomSheetModalRef: bottomSheetModalRef,
-    handlePresentModalPress: () => handlePresentModalPress,
+    handlePresentModalPress: handlePresentModalPress,
   };
 
   return (
@@ -107,7 +107,10 @@ const BottomSheetContent = () => {
       </ScrollView>
       <Text style={bottomSheet.subtitle}>Historial de precios</Text>
       <Text
-        style={[bottomSheet.description, { color: "rgba(165, 166, 181, 1)" }]}
+        style={[
+          bottomSheet.description,
+          { color: "rgba(165, 166, 181, 1)", paddingRight: 32 },
+        ]}
       >
         Basado en el precio de cierre del mercado el 1 de enero de cada año.
       </Text>

@@ -17,4 +17,21 @@ function coinReducer(state: number, action) {
   }
 }
 
-export { coinReducer };
+function barChartReducer(state: boolean, action) {
+  switch (action.type) {
+    case "barOne":
+      return !state;
+    case "barTwo":
+      return !state;
+    case "barThree":
+      return !state;
+    case "barFour":
+      return !state;
+    case "barFive":
+      return !state;
+    default:
+      throw new Error();
+  }
+}
+
+export { coinReducer, barChartReducer };

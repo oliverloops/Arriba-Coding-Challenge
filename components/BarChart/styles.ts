@@ -56,4 +56,37 @@ const bar = StyleSheet.create({
   },
 });
 
-export { main, bar };
+const balloon = StyleSheet.create({
+  main: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 64,
+    height: 29,
+    borderRadius: 8,
+    transform: [{ translateY: -40 }],
+    position: "absolute",
+    backgroundColor: "rgba(215, 250, 232, 1)",
+  },
+  content: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+  },
+  qty: {
+    color: "rgba(51, 165, 147, 1)",
+    fontSize: 12,
+    fontWeight: "500",
+    fontFamily: "Manrope",
+    marginTop: 15,
+  },
+  feet: {
+    width: 12,
+    height: 12,
+    transform: [{ rotate: "45deg" }, { translateY: 3 }],
+    backgroundColor: "rgba(215, 250, 232, 1)",
+  },
+});
+
+export { main, bar, balloon };

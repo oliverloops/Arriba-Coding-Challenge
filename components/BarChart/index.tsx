@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import { View, Text, Pressable } from "react-native";
+import React, { useReducer } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 //styles
 import { main, bar } from "./styles";
+//UI components
+import Balloon from "./Ballon";
+//Reducers
+import { barChartReducer } from "../../reducers/coinReducer";
 
-const BarChart = () => {
+const BarChart: React.FC = () => {
   return (
     <View style={main.container}>
       <View style={main.line}></View>
@@ -14,60 +18,69 @@ const BarChart = () => {
   );
 };
 
-const Bar = ({ percentage }) => {
-  const [focus, setFocus] = useState("rgba(223, 232, 246, 1)");
+const Bar = ({
+  barNumber,
+  percentage,
+  year,
+}: {
+  barNumber: string;
+  percentage: number;
+  year: string;
+}) => {
+  const barState = { status: false };
 
-  const onBarFocus = () => {
-    if (focus === "rgba(223, 232, 246, 1)") {
-      setFocus("rgba(46, 202, 136, 1)");
-    } else {
-      setFocus("rgba(223, 232, 246, 1)");
-    }
-  };
-
-  return (
-    <Pressable
-      style={[bar.body, { height: percentage, backgroundColor: focus }]}
-      onPress={onBarFocus}
-    ></Pressable>
+  const [active, dispatch] = useReducer(
+    barChartReducer,
+    Object.is(year, "2021") ? !barState.status : barState.status
   );
-};
 
-const ChartContent = () => {
   return (
-    <View style={main.yearsLayout}>
-      <View style={main.chartContainer}>
-        <Bar percentage={26} />
-        <Text style={[main.year, { color: "rgba(197, 208, 230, 1)" }]}>
-          2017
-        </Text>
-      </View>
-      <View style={main.chartContainer}>
-        <Bar percentage={41} />
-        <Text style={[main.year, { color: "rgba(197, 208, 230, 1)" }]}>
-          2018
-        </Text>
-      </View>
-      <View style={main.chartContainer}>
-        <Bar percentage={57} />
-        <Text style={[main.year, { color: "rgba(197, 208, 230, 1)" }]}>
-          2019
-        </Text>
-      </View>
-      <View style={main.chartContainer}>
-        <Bar percentage={78} />
-        <Text style={[main.year, { color: "rgba(46, 202, 136, 1)" }]}>
-          2020
-        </Text>
-      </View>
-      <View style={main.chartContainer}>
-        <Bar percentage={93} />
-        <Text style={[main.year, { color: "rgba(197, 208, 230, 1)" }]}>
-          2021
-        </Text>
-      </View>
+    <View style={{ justifyContent: "space-between", alignItems: "center" }}>
+      {active && <Balloon />}
+      <TouchableOpacity
+        style={[
+          bar.body,
+          {
+            height: percentage,
+            backgroundColor: active
+              ? "rgba(46, 202, 136, 1)"
+              : "rgba(223, 232, 246, 1)",
+          },
+        ]}
+        onPress={() => dispatch({ type: barNumber })}
+      ></TouchableOpacity>
+      <Text
+        style={[
+          main.year,
+          {
+            color: active ? "rgba(46, 202, 136, 1)" : "rgba(223, 232, 246, 1)",
+          },
+        ]}
+      >
+        {year}
+      </Text>
     </View>
   );
 };
+
+const ChartContent: React.FC = () => (
+  <View style={main.yearsLayout}>
+    <View style={main.chartContainer}>
+      <Bar barNumber={"barOne"} percentage={26} year={"2018"} />
+    </View>
+    <View style={main.chartContainer}>
+      <Bar barNumber={"barTwo"} percentage={41} year={"2019"} />
+    </View>
+    <View style={main.chartContainer}>
+      <Bar barNumber={"barThree"} percentage={57} year={"2020"} />
+    </View>
+    <View style={main.chartContainer}>
+      <Bar barNumber={"barFour"} percentage={78} year={"2021"} />
+    </View>
+    <View style={main.chartContainer}>
+      <Bar barNumber={"barFive"} percentage={93} year={"2022"} />
+    </View>
+  </View>
+);
 
 export default BarChart;
