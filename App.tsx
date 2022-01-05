@@ -1,15 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 //---
 //Screens
-import Coin from "./screens/Coin";
-import ECLP from "./screens/ECLP";
+import Coin from "./src/screens/Coin";
+import ECLP from "./src/screens/ECLP";
+//--
+//Styles
+import styles from "./static/styles/global";
 //--
 //UI Components
-import BackArrow from "./components/BackArrow";
-import WhiteArrow from "./components/WhiteArrow";
+import BackArrow from "./src/components/BackArrow";
+import WhiteArrow from "./src/components/WhiteArrow";
 
 const Stack = createNativeStackNavigator();
 
@@ -59,17 +63,28 @@ export default function App() {
   );
 }
 
-const Home = ({ navigation }) => (
-  <View style={{ flex: 1, justifyContent: "center" }}>
-    <Text style={styles.main}>Hello Arriba!</Text>
-    <Button title="Go to coin" onPress={() => navigation.navigate("Coin")} />
-    <Button title="Go to eCLP" onPress={() => navigation.navigate("eCLP")} />
-  </View>
+//Home content screen
+const Home = ({ navigation }: { navigation: any }) => (
+  <LinearGradient
+    colors={["rgba(249, 247, 251, 1)", "rgba(94, 94, 94, 0.2)"]}
+    style={styles.layout}
+  >
+    <View style={{ marginTop: "20%" }}>
+      <Text style={styles.title}>¡Bienvenido a Arriba! ✌️</Text>
+      <View style={styles.buttonsContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Coin")}
+        >
+          <Text style={styles.textButton}>Bitcoin</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("eCLP")}
+        >
+          <Text style={styles.textButton}>Balance eCLP</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </LinearGradient>
 );
-
-const styles = StyleSheet.create({
-  main: {
-    textAlign: "center",
-    fontFamily: "Manrope",
-  },
-});

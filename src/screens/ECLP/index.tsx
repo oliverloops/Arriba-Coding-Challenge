@@ -35,10 +35,10 @@ const Content: React.FC = () => {
     <>
       <LinearGradient
         start={{ x: 0.1, y: 0.2 }}
-        colors={["rgba(22, 250, 155, 0.6)", "rgba(46, 202, 136, 1)"]}
+        colors={["rgba(22, 250, 155, 0.7)", "rgba(46, 202, 136, 1)"]}
         style={layout.aboveBlock}
       >
-        <Image source={require("../../static/wallet_lg.png")} />
+        <Image source={require("../../../static/wallet_lg.png")} />
         <View style={layout.label}>
           <Text style={layout.labelText}>Total eCLP Balance</Text>
         </View>

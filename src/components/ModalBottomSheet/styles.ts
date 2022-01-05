@@ -17,6 +17,10 @@ const main = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
   },
+  bottomSheetBorders: {
+    borderTopLeftRadius: 32,
+    borderTopRightRadius: 32,
+  },
   title: {
     fontSize: 28,
     fontWeight: "600",

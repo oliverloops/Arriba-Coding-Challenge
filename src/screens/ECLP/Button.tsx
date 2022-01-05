@@ -4,7 +4,15 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 //styles
 import { button } from "./styles";
 
-const BalanceButton = ({ title, color, handleStateChange }) => {
+const BalanceButton = ({
+  title,
+  color,
+  handleStateChange,
+}: {
+  title: string;
+  color: string;
+  handleStateChange: any;
+}) => {
   //Button animations
   const animatedButton = new Animated.Value(1);
 

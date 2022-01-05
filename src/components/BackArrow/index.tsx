@@ -5,7 +5,7 @@ const BackArrow = () => (
   <View style={styles.content}>
     <Image
       style={styles.image}
-      source={require("../../static/back_arrow.png")}
+      source={require("../../../static/back_arrow.png")}
     />
   </View>
 );

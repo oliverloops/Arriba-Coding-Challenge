@@ -14,6 +14,10 @@ const layout = StyleSheet.create({
     width: 141,
     height: 141,
   },
+  bottomSheetBorders: {
+    borderTopLeftRadius: 32,
+    borderTopRightRadius: 32,
+  },
 });
 
 const bottomSheet = StyleSheet.create({
@@ -66,20 +70,20 @@ const boxContainer = StyleSheet.create({
     width: 220,
     backgroundColor: "#fff",
     borderRadius: 10,
-    margin: 8,
+    margin: 6,
     marginBottom: 40,
     ...Platform.select({
       ios: {
         shadowColor: "#000",
         shadowOffset: {
           width: 0,
-          height: 2,
+          height: 8,
         },
-        shadowOpacity: 0.24,
-        shadowRadius: 4.45,
+        shadowOpacity: 0.1,
+        shadowRadius: 9.85,
       },
       android: {
-        elevation: 6,
+        elevation: 14,
       },
     }),
   },

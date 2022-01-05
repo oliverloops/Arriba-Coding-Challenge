@@ -30,7 +30,7 @@ const LineChart = () => {
 };
 
 const Content = () => {
-  const consumer = useContext(CoinContext);
+  const consumer: any = useContext(CoinContext);
 
   //Bottom Sheet Method handler
   const showModalBottomSheet = () => {
@@ -66,7 +66,7 @@ const Content = () => {
             <Text style={main.conversion}> / 1 USD Coin</Text>
           </View>
           <View style={main.percent}>
-            <Image source={require("../../static/up_arrow.png")} />
+            <Image source={require("../../../static/up_arrow.png")} />
             <View style={{ flexDirection: "row", paddingLeft: 3 }}>
               <ChartYLabel
                 format={percentWorklet}
@@ -77,10 +77,10 @@ const Content = () => {
         </View>
         <View style={main.buttons}>
           <TouchableOpacity style={main.iconBox} onPress={showModalBottomSheet}>
-            <Image source={require("../../static/qr_code.png")} />
+            <Image source={require("../../../static/qr_code.png")} />
           </TouchableOpacity>
           <TouchableOpacity style={main.iconBox} onPress={showModalBottomSheet}>
-            <Image source={require("../../static/send_icon.png")} />
+            <Image source={require("../../../static/send_icon.png")} />
           </TouchableOpacity>
         </View>
       </View>

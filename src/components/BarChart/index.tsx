@@ -5,7 +5,10 @@ import { main, bar } from "./styles";
 //UI components
 import Balloon from "./Ballon";
 //Reducers
-import { barChartReducer } from "../../reducers/coinReducer";
+import {
+  barChartReducer,
+  annualCurrencyReducer,
+} from "../../reducers/coinReducer";
 
 const BarChart: React.FC = () => {
   return (
@@ -27,16 +30,30 @@ const Bar = ({
   percentage: number;
   year: string;
 }) => {
-  const barState = { status: false };
+  //Initial bar state
+  const barState = { status: false, value: 0 };
 
+  //progress bar by year reducer hook
   const [active, dispatch] = useReducer(
     barChartReducer,
     Object.is(year, "2021") ? !barState.status : barState.status
   );
 
+  //annuañ currency price reducer hook
+  const [price, dispatchPrice] = useReducer(
+    annualCurrencyReducer,
+    Object.is(year, "2021") ? 32840 : barState.value
+  );
+
+  //function to handle both dispatchers
+  const barDispatch = () => {
+    dispatch({ type: barNumber });
+    dispatchPrice({ type: barNumber });
+  };
+
   return (
     <View style={{ justifyContent: "space-between", alignItems: "center" }}>
-      {active && <Balloon />}
+      {active && <Balloon currencyValue={price} />}
       <TouchableOpacity
         style={[
           bar.body,
@@ -47,7 +64,7 @@ const Bar = ({
               : "rgba(223, 232, 246, 1)",
           },
         ]}
-        onPress={() => dispatch({ type: barNumber })}
+        onPress={barDispatch}
       ></TouchableOpacity>
       <Text
         style={[

@@ -2,7 +2,7 @@
  added for testing purposes*/
 const randomQty: number = Math.random() * 10 + 3;
 
-function balanceReducer(state: number, action) {
+function balanceReducer(state: number, action: any) {
   switch (action.type) {
     case "deposit":
       return (state += randomQty);

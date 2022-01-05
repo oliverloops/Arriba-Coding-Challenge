@@ -3,7 +3,7 @@ import { View, Image, StyleSheet } from "react-native";
 
 const WhiteArrow = () => (
   <View style={styles.content}>
-    <Image source={require("../../static/white_arrow.png")} />
+    <Image source={require("../../../static/white_arrow.png")} />
   </View>
 );
 

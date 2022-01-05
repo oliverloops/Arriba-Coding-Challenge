@@ -20,7 +20,7 @@ const Coin = () => {
   const sheetRef = useRef<BottomSheet>(null);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
-  //snap
+  //initial snap
   const snapPoints = useMemo(() => ["70%"], []);
 
   //callbacks
@@ -32,8 +32,14 @@ const Coin = () => {
     bottomSheetModalRef.current?.present();
   }, []);
 
+  //This value can be retrieved from an API
+  const currentPrice = 714;
+  const currentPercentage = 1.01;
+
   //Context data (ref handler)
   const bottomSheetData = {
+    currentPrice: currentPrice,
+    currentPercentage: currentPercentage,
     bottomSheetModalRef: bottomSheetModalRef,
     handlePresentModalPress: handlePresentModalPress,
   };
@@ -49,16 +55,18 @@ const Coin = () => {
           <View style={layout.imageContainer}>
             <Image
               style={layout.coinLogo}
-              source={require("../../static/bitcoin_logo.png")}
+              source={require("../../../static/bitcoin_logo.png")}
             />
           </View>
         </LinearGradient>
         <BottomSheet
           ref={sheetRef}
           snapPoints={snapPoints}
+          handleIndicatorStyle={{ display: "none" }}
+          backgroundStyle={layout.bottomSheetBorders}
           onChange={handleSheetChange}
         >
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <BottomSheetView>
               <BottomSheetContent />
             </BottomSheetView>
@@ -146,8 +154,8 @@ const ContentBox = ({
         <Image
           source={
             label === "green"
-              ? require("../../static/percent_icon.png")
-              : require("../../static/flame_icon.png")
+              ? require("../../../static/percent_icon.png")
+              : require("../../../static/flame_icon.png")
           }
         />
       </View>
@@ -158,6 +166,8 @@ const ContentBox = ({
 );
 
 const Footer = () => {
+  const consumer: any = React.useContext(CoinContext);
+
   return (
     <View style={bottomSheetFooter.body}>
       <View>
@@ -178,7 +188,7 @@ const Footer = () => {
             marginTop: 5,
           }}
         >
-          $ 714
+          $ {consumer.currentPrice}
         </Text>
       </View>
       <Pressable style={bottomSheetFooter.button}>

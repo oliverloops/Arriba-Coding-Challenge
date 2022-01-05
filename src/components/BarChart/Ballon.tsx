@@ -3,12 +3,12 @@ import { View, Text } from "react-native";
 //styles
 import { balloon } from "./styles";
 
-const Balloon = () => {
+const Balloon = ({ currencyValue }: { currencyValue: number }) => {
   return (
     <>
       <View style={balloon.main}>
         <View style={balloon.content}>
-          <Text style={balloon.qty}>$7,300</Text>
+          <Text style={balloon.qty}>${currencyValue}</Text>
           <View style={balloon.feet}></View>
         </View>
       </View>
